@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pedido</title>
+    <link rel="stylesheet" type="text/css" href="/css.css">
+</head>
+<body>
+<h2>Pedido</h2>
+<table>
+    <thead>
+    <tr>
+        <th>Restaurante</th>
+        <th>Item</th>
+        <th>Preço</th>
+        <th>Quantidade</th>
+        <th>Aumentar</th>
+        <th>Diminuir</th>
+        <th>Excluir</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="item : ${sessionPedido}">
+        <td th:text="${item.item.restauranteNome}"></td>
+        <td th:text="${item.item.nome}"></td>
+        <td th:text="${item.item.preco}"></td>
+        <td th:text="${item.quantidade}"></td>
+        <td><a th:href="@{/adicionar-pedido/{id}(id=${item.item.id})}">Aumentar</a></td>
+        <td><a th:href="@{/diminuir-pedido/{id}(id=${item.item.id})}">Diminuir</a></td>
+        <td><a th:href="@{/pedido/remover/{id}(id=${item.item.id})}">Excluir</a></td>
+    </tr>
+    </tbody>
+</table>
+<p>Total do Pedido: R$ <span th:text="${totalPedido}"></span></p>
+<p><a href="/index">Listar restaurantes</a></p>
+</body>
+</html>
+

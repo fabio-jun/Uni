@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Index</title>
+    <link rel="stylesheet" type="text/css" href="/css.css">
+</head>
+<body>
+<div th:switch="${restaurantes}">
+    <h2 th:case="null">Ainda não há restaurantes!</h2>
+    <div th:case="*">
+        <h2>Restaurantes</h2>
+        <table>
+            <thead>
+            <tr>
+                <th>Nome</th>
+                <th>Cardápio</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="restaurante : ${restaurantes}">
+                <td th:text="${restaurante.nome}"></td>
+                <td><a th:href="@{/cardapio/{id}(id=${restaurante.id})}">Cardápio</a></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <p><a href="/pedido">Visualizar pedido</a></p>
+</div>
+</body>
+</html>

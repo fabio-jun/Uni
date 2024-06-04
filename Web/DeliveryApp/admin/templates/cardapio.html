@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cardápio</title>
+    <link rel="stylesheet" type="text/css" href="/css.css">
+</head>
+<body>
+<div th:switch="${itensCardapio}">
+    <h2 th:case="null">Ainda não há itens!</h2>
+    <div th:case="*">
+
+        <h2 th:text="'Cardápio do Restaurante ' + ${restauranteNome}"></h2>
+        <table>
+            <thead>
+            <tr>
+                <th>Nome</th>
+                <th>Descrição</th>
+                <th>Preço</th>
+                <th>Editar</th>
+                <th>Remover</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="itemCardapio : ${itensCardapio}">
+                <td th:text="${itemCardapio.nome}"></td>
+                <td th:text="${itemCardapio.descricao}"></td>
+                <td th:text="${itemCardapio.preco}"></td>
+                <td><a th:href="@{/editar-item/{id}(id=${itemCardapio.id})}" class="btn">Editar</a></td>
+                <td><a th:href="@{/remover-item/{id}(id=${itemCardapio.id})}" class="btn">Remover</a></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <p><a th:href="@{/novo-item/{restauranteId}(restauranteId=${restauranteId})}">Adicionar um novo item no cardápio</a></p>
+    <a href="/index">Listar restaurantes</a>
+</div>
+</body>
+</html>
