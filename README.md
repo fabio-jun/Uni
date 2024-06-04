@@ -1,1 +1,1 @@
-Some of my favorite projects
+Some of my favorite university projects
